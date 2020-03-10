@@ -5,13 +5,25 @@ let board = [
 ];
 
 let players = ['O','X'];
+let human = '';
+let ia = '';
 let available = [];
 let currentPlayer;
+let w = 0;
+let h = 0;
 
 function setup() {
     var cnv = createCanvas(400, 400);
     background(220);
-    currentPlayer = random(players);
+    human = random(players);
+    if (human == 'X') {
+        ia = 'O';
+    } else {
+        ia = 'X';
+    }
+    print(human)
+    print(ia)
+    currentPlayer = human;
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             available.push([i,j]);
@@ -20,27 +32,40 @@ function setup() {
     var x = (windowWidth - width) / 2;
     var y = (windowHeight - height) / 2;
     cnv.position(x, y);
+    w = width/3;
+    h = height/3;
 }
 
+
+
 function nextTurn() {
-    let index = floor(random(available.length));
-    let spot = available.splice(index,1)[0];
-    let i = spot[0];
-    let j = spot[1];
-    board[i][j] = currentPlayer;
-    if(currentPlayer == 'X') {
-        currentPlayer = 'O';
-    } else {
-        currentPlayer = 'X';
+    let available = [];
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j] == '') {
+                available.push({i, j});
+            }
+        }
+    }
+    let move = random(available);
+    board[move.i][move.j] = ia;
+    currentPlayer = human;
+}
+
+function mousePressed() {
+    if(currentPlayer == human) {
+        let i = floor(mouseX / w);
+        let j = floor(mouseY / h);
+        if(board[i][j] == '') {
+            board[i][j] = human;
+            currentPlayer = ia;
+            nextTurn();
+        }
     }
     
 }
 
-function mousePressed() {
-    nextTurn();
-}
-
-function drawBottom(w,h) {
+function drawBottom() {
     stroke(0);  
     line(w, 0, w, height);
     line(w*2, 0, w*2, height);
@@ -55,12 +80,10 @@ function drawBottom(w,h) {
 function draw() {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-            let w = width/3;
-            let h = height/3;
             let x = w * i + w/2;
             let y = h * j + h/2;
             let S = board[i][j];
-            drawBottom(w,h);
+            drawBottom();
             if(S == players[0]) {
                 noFill();
                 ellipseMode(CENTER);
