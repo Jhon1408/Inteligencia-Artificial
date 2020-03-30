@@ -40,45 +40,23 @@ function minimax(board, depth, isMaximazing) {
 }
 
 function bestMove() {
-    if (ia == 'X') {
-        let bestScore = -Infinity;
-        let move;
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (board[i][j] == '') {
-                    board[i][j] = ia;
-                    let score = minimax(board, 0, false);
-                    board[i][j] = '';
-                    if(score > bestScore) {
-                        bestScore = score;
-                        move = { i, j };
-                    }
+    let bestScore = -Infinity;
+    let move;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j] == '') {
+                board[i][j] = ia;
+                let score = minimax(board, 0, false);
+                board[i][j] = '';
+                if(score > bestScore) {
+                    bestScore = score;
+                    move = { i, j };
                 }
             }
         }
-        print("Best Score: " + bestScore)
-        print([move.i,move.j])
-        board[move.i][move.j] = ia;
-        currentPlayer = human;
-    } else {
-        let bestScore = Infinity;
-        let move;
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (board[i][j] == '') {
-                    board[i][j] = ia;
-                    let score = minimax(board, 0, true);
-                    board[i][j] = '';
-                    if(score < bestScore) {
-                        bestScore = score;
-                        move = { i, j };
-                    }
-                }
-            }
-        }
-        print([move.i,move.j])
-        board[move.i][move.j] = ia;
-        currentPlayer = human;
     }
-    
+    print("Best Score: " + bestScore)
+    print([move.i,move.j])
+    board[move.i][move.j] = ia;
+    currentPlayer = human;
 }

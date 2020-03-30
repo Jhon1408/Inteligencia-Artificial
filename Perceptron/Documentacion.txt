@@ -1,0 +1,6 @@
+https://github.com/nature-of-code/noc-examples-p5.js/tree/master/chp10_nn/NOC_10_01_Perceptron
+
+https://www.youtube.com/watch?v=ntKn5TPHHAk
+
+http://appsbasicas.cf/IA/PERCEPTRON/
+

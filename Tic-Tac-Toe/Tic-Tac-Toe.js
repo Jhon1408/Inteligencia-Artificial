@@ -18,7 +18,7 @@ function setup() {
     cnv.position(x, y);
     w = width/3;
     h = height/3;
-    if(ia == 'X') {
+    if (currentPlayer == ia) {
         bestMove();
     }
 }
@@ -69,13 +69,18 @@ function checkWinner() {
 
 function mousePressed() {
     if(currentPlayer == human) {
-        let i = floor(mouseX / w);
-        let j = floor(mouseY / h);
-        if(board[i][j] == '') {
-            board[i][j] = human;
-            currentPlayer = ia;
-            bestMove();
+        try {
+            let i = floor(mouseX / w);
+            let j = floor(mouseY / h);
+            if(board[i][j] == '') {
+                board[i][j] = human;
+                currentPlayer = ia;
+                bestMove();
+            }
+        } catch (error) {
+            
         }
+        
     }
     
 }
