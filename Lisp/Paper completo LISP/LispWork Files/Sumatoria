@@ -1,0 +1,12 @@
+(defun sumatoria (n)
+  (cond
+   ((= n 0) 0)
+   (t (+ n (sumatoria(- n 1)))
+      )
+   )
+)
+
+(write (sumatoria 5))
+
+
+

@@ -1,0 +1,9 @@
+(defun miembro (objeto lista)
+    (if (null lista)
+        nil
+        (if (eql (car lista) objeto)
+            lista
+            (miembro objeto (cdr lista))
+        )
+    )
+)

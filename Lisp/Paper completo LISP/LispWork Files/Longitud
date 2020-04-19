@@ -1,0 +1,6 @@
+(defun longitud (lista)
+    (cond 
+     ((null lista) 0)
+     (t (+ (longitud (cdr lista)) 1))
+     )
+)

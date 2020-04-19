@@ -1,0 +1,7 @@
+(defun termino-n (n lista)
+    (cond 
+     ((zerop n) (car lista))
+     (t (termino-n (- n 1) (cdr lista)))
+     )
+)
+

@@ -1,0 +1,8 @@
+(defun absoluto (n)
+  (cond
+   ((< n 0) (* n -1))
+   (t n)
+   )
+)
+
+(write (absoluto -5))

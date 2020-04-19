@@ -1,0 +1,3 @@
+(defun cuadrado (a) (* a a))
+
+(defun cubo (a) (* a a a))
